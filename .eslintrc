@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": [
+    "chai-friendly"
+  ],
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 1
+  }
+}

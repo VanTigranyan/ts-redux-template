@@ -1,0 +1,23 @@
+{
+  "name": "crio-scripts",
+  "version": "1.0.0",
+  "description": "Build and run scripts for Crio",
+  "main": "index.js",
+  "bin": {
+    "l2w-scripts": "bin/index.js"
+  },
+  "files": [
+    "/bin"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "env-cmd": "^10.1.0",
+    "react-app-rewired": "^2.1.5",
+    "@cypress/instrument-cra": "^1.4.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
