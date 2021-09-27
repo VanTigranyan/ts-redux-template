@@ -1,13 +1,11 @@
 #! /usr/bin/env node --max-old-space-size=10240
 
-const { spawn } = require("child_process");
+const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const args = process.argv.slice(2);
 
-const scriptIndex = args.findIndex(
-  x => x === 'build' || x === 'start' || x === 'test'
-);
+const scriptIndex = args.findIndex((x) => x === 'build' || x === 'start' || x === 'test');
 
 const shouldInstrument = args.includes('--instrument') ? '-r @cypress/instrument-cra' : '';
 if (shouldInstrument) {
@@ -21,6 +19,7 @@ const envs = {
   qa: 'qa',
   staging: 'staging',
   local: 'development.local',
+  test: 'test',
 };
 
 switch (script) {
@@ -31,10 +30,10 @@ switch (script) {
     const envName = envs[chosenEnv.replace('--', '')];
     const envLocation = path.resolve(process.cwd(), `.env.${envName}`);
     if (!fs.existsSync(envLocation)) {
-      process.stdout.write('The specified env file isn\'t found!');
+      process.stdout.write("The specified env file isn't found!");
       process.exit(1);
     }
-    const command = `env-cmd -f .env.${envName} react-app-rewired ${shouldInstrument} ${script}`;
+    const command = `env-cmd -f .env.${envName} react-scripts ${shouldInstrument} ${script}`;
     const [cmd, ...restArgs] = command.split(' ');
     console.log('Running, please wait...');
     spawn(cmd, restArgs, {
@@ -48,4 +47,3 @@ switch (script) {
     console.log('Unknown script "' + script + '".');
 }
 process.on('SIGINT', () => process.exit(1));
-

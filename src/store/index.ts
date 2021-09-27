@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, PreloadedState} from 'redux';
+import { createStore, applyMiddleware, PreloadedState } from 'redux';
 import createSagaMiddleware, { END } from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootSaga from './sagas';
@@ -9,15 +9,18 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
 const preloadedState: PreloadedState<any> = {};
-const reduxStore = createStore(rootReducer, preloadedState, composeWithDevTools(applyMiddleware(...middlewares)));
-const store = {
+const reduxStore = createStore(
+  rootReducer,
+  preloadedState,
+  composeWithDevTools(applyMiddleware(...middlewares)),
+);
+const index = {
   ...reduxStore,
-  close: () => store.dispatch(END),
+  close: () => index.dispatch(END),
 };
 sagaMiddleware.run(rootSaga);
 
+export type AppDispatch = typeof index.dispatch;
+export type RootState = ReturnType<typeof index.getState>;
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-
-export default store;
+export default index;

@@ -1,10 +1,10 @@
 {
   "name": "crio-scripts",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Build and run scripts for Crio",
   "main": "index.js",
   "bin": {
-    "l2w-scripts": "bin/index.js"
+    "crio-scripts": "bin/index.js"
   },
   "files": [
     "/bin"
@@ -14,8 +14,7 @@
   },
   "peerDependencies": {
     "env-cmd": "^10.1.0",
-    "react-app-rewired": "^2.1.5",
-    "@cypress/instrument-cra": "^1.4.0"
+    "react-scripts": "^4.0.3"
   },
   "keywords": [],
   "author": "",
